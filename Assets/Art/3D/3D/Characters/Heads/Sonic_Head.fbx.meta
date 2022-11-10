@@ -1,0 +1,189 @@
+fileFormatVersion: 2
+guid: d812d2f957558f24583e819a7d177eb5
+ModelImporter:
+  serializedVersion: 20200
+  internalIDToNameTable:
+  - first:
+      74: -686319651317621071
+    second: Sonic_Head|AlienKang.003Action
+  - first:
+      74: 2940108230027308771
+    second: Sonic_Head|AlienKang.003Action.001
+  - first:
+      74: 8659144337041020600
+    second: Sonic_Head|Armature.011Action
+  - first:
+      74: 2326859191250419504
+    second: Sonic_Head|Armature.011Action.001
+  - first:
+      74: 4534303049343516442
+    second: Sonic_Head|Armature.011Action.002
+  - first:
+      74: -1915606274943549676
+    second: Sonic_Head|Armature.011Action.003
+  - first:
+      74: -5342625163985355691
+    second: Sonic_Head|Armature.011Action.004
+  - first:
+      74: 7430819435132588803
+    second: Sonic_Head|Armature.011Action.005
+  - first:
+      74: 5060842285488722358
+    second: Sonic_Head|Armature.011Action.006
+  - first:
+      74: -3303034071154100572
+    second: Sonic_Head|Armature.012Action
+  - first:
+      74: 6603171252339617948
+    second: Sonic_Head|BatSquid.001Action
+  - first:
+      74: -6282212992379152146
+    second: Sonic_Head|CubeAction
+  - first:
+      74: 4755557911510277395
+    second: Sonic_Head|CubeAction.001
+  - first:
+      74: -7124166392015772104
+    second: Sonic_Head|CubeAction.002
+  - first:
+      74: 3490590508099376007
+    second: Sonic_Head|CubeAction.003
+  - first:
+      74: 3107734485138746000
+    second: Sonic_Head|CubeAction.004
+  - first:
+      74: 6296253035289917130
+    second: Sonic_Head|CubeAction.005
+  - first:
+      74: -7640985735391994559
+    second: Sonic_Head|CubeAction.006
+  - first:
+      74: 867103186993287382
+    second: Sonic_Head|CubeAction.007
+  - first:
+      74: 1092614913617673248
+    second: Sonic_Head|Mushroom.001Action
+  - first:
+      74: 7379611458173810611
+    second: Sonic_Head|Olaf.001Action
+  - first:
+      74: 7490863574629466727
+    second: Sonic_Head|Olaf.001Action.001
+  - first:
+      74: -8828402114423991961
+    second: Sonic_Head|Olaf.001Action.002
+  - first:
+      74: 6148667036250682504
+    second: Sonic_Head|Olaf.001Action.003
+  - first:
+      74: 139850499841174376
+    second: Sonic_Head|Olaf.001Action.004
+  - first:
+      74: -835730139230899291
+    second: Sonic_Head|Pikachu.001Action
+  - first:
+      74: 180296159869700346
+    second: Sonic_Head|Pikachu.001Action.001
+  - first:
+      74: -1085441733688513336
+    second: Sonic_Head|Sonic.001Action
+  - first:
+      74: 2088541430482881142
+    second: Sonic_Head|Wolverine.001Action
+  externalObjects: {}
+  materials:
+    materialImportMode: 2
+    materialName: 0
+    materialSearch: 1
+    materialLocation: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    importAnimatedCustomProperties: 0
+    importConstraints: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    extraUserProperties: []
+    clipAnimations: []
+    isReadable: 0
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    useSRGBMaterialColor: 1
+    sortHierarchyByName: 1
+    importVisibility: 1
+    importBlendShapes: 1
+    importCameras: 1
+    importLights: 1
+    fileIdsGeneration: 2
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    keepQuads: 0
+    weldVertices: 1
+    bakeAxisConversion: 0
+    preserveHierarchy: 0
+    skinWeightsMode: 0
+    maxBonesPerVertex: 4
+    minBoneWeight: 0.001
+    meshOptimizationFlags: -1
+    indexFormat: 0
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVMarginMethod: 1
+    secondaryUVMinLightmapResolution: 40
+    secondaryUVMinObjectScale: 1
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+    normalCalculationMode: 4
+    legacyComputeAllNormalsFromSmoothingGroupsWhenMeshHasBlendShapes: 0
+    blendShapeNormalImportMode: 1
+    normalSmoothingSource: 0
+  referencedClips: []
+  importAnimation: 1
+  humanDescription:
+    serializedVersion: 3
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    globalScale: 1
+    rootMotionBoneName: 
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  autoGenerateAvatarMappingIfUnspecified: 1
+  animationType: 2
+  humanoidOversampling: 1
+  avatarSetup: 0
+  addHumanoidExtraRootOnlyWhenUsingAvatar: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
