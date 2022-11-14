@@ -9,9 +9,9 @@ public class LevelsManager : MonoBehaviour
 
     [Header("Attributes")]
     //Custom level class with difficulty level
-    [SerializeField] List<GameObject> defaultLevelProgression;
-    [SerializeField] List<GameObject> proLevelProgression;
-    [SerializeField] List<GameObject> noobLevelProgression;
+    [SerializeField] List<LevelData> defaultLevelProgression;
+    [SerializeField] List<LevelData> proLevelProgression;
+    [SerializeField] List<LevelData> noobLevelProgression;
     [SerializeField] int currentLevel;
 
 
@@ -27,5 +27,9 @@ public class LevelsManager : MonoBehaviour
         Instance = this;
     }
 
+    public LevelData RetrieveLevel(int levelNumber, PlayerType pt)
+    {
+        return defaultLevelProgression.Find(x => x.levelNumber == levelNumber);
+    }
     
 }

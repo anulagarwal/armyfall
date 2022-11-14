@@ -24,6 +24,8 @@ public class UIManager : MonoBehaviour
     [SerializeField] private Text inGameLevelText = null;
     [SerializeField] private Text winLevelText = null;
     [SerializeField] private Text loseLevelText = null;
+    [SerializeField] private Text debugText = null;
+
 
     [Header("Reward/Coins")]
     [SerializeField] List<Text> allCurrentCoins = null;
@@ -99,6 +101,10 @@ public class UIManager : MonoBehaviour
         scoreText.text = "" + value;
     }
 
+    public void UpdateDebugText(string s)
+    {
+        debugText.text = s;
+    }
     public void UpdateLevel(int level)
     {
         mainLevelText.text = "LEVEL " + level;
@@ -137,6 +143,21 @@ public class UIManager : MonoBehaviour
         GameManager.Instance.ChangeLevel();
     }
 
+
+    public void OnClickSpawnButton()
+    {
+        CharacterManager.Instance.SpawnCharacter();
+    }
+
+    public void OnClickIncomeButton()
+    {
+
+    }
+
+    public void OnClickStrengthButton()
+    {
+        CharacterManager.Instance.UpgradeStrength();
+    }
     #endregion
 
 

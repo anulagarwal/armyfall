@@ -52,7 +52,19 @@ public enum PlayerType
     Average,
     Pro
 }
+public enum CharacterState
+{
+    Run,
+    Push,
+    Fall,
+    Celebrate
+}
 
+public enum CharacterType
+{
+    Player,
+    Enemy
+}
 public enum TileState
 {
 

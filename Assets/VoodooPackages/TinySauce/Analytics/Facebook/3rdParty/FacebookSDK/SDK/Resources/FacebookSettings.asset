@@ -14,11 +14,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   selectedAppIndex: 0
   clientTokens:
-  - 
+  - 1835273086643096
   appIds:
-  - 0
+  - 1835273086643096
   appLabels:
-  - App Name
+  - Template HC
   cookie: 1
   logging: 1
   status: 1
