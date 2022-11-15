@@ -12,6 +12,12 @@ public class CharacterManager : MonoBehaviour
 
     [Header("Attributes")]
     [SerializeField] int upgradeVal;
+    [SerializeField] int queueCount;
+    [SerializeField] float spawnDelay;
+    float StartTime;
+    bool isSpawning;
+
+
 
     public static CharacterManager Instance = null;
 
@@ -30,13 +36,19 @@ public class CharacterManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        StartTime = Time.time;
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+        if (queueCount > 0)
+        {
+            if(StartTime +spawnDelay < Time.time)
+            {
+                Spawn();
+            }
+        }
     }
 
 
@@ -61,12 +73,17 @@ public class CharacterManager : MonoBehaviour
     }
     public void SpawnCharacter()
     {
-        GameObject g = Instantiate(character, spawnPoints[GetNumberFromRange(spawnPoints.Count - 1, characters.Count)].position, Quaternion.identity);
-        AddCharacter(g.GetComponent<Character>());
-        print(UpgradeManager.Instance.GetUpgradeValue(UpgradeType.Strength));
-        g.GetComponent<Character>().UpdateStrength (UpgradeManager.Instance.GetUpgradeValue(UpgradeType.Strength));
+        queueCount++;
     }
 
+    public void Spawn()
+    {
+        GameObject g = Instantiate(character, spawnPoints[GetNumberFromRange(spawnPoints.Count - 1, characters.Count)].position, Quaternion.identity);
+        AddCharacter(g.GetComponent<Character>());
+        g.GetComponent<Character>().UpdateStrength(UpgradeManager.Instance.GetUpgradeValue(UpgradeType.Strength));
+        queueCount--;
+        StartTime = Time.time;
+    }
  
     public void UpgradeIncome()
     {

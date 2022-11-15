@@ -34,7 +34,7 @@ public class Wall : MonoBehaviour
             if (diff < 0)
             {
                 //Player push
-                EnemySpawner.Instance.UpdateFriction(Mathf.Clamp(maxFriction - Mathf.Abs(diff), 0.06f, 0.25f));
+                EnemySpawner.Instance.UpdateFriction(Mathf.Clamp(maxFriction - Mathf.Abs(diff), 0.12f, 0.25f));
                 CharacterManager.Instance.UpdateFriction(0.3f);
 
                 //print(Mathf.Clamp(maxFriction - Mathf.Abs(diff), 0.06f, 0.25f));
@@ -43,7 +43,7 @@ public class Wall : MonoBehaviour
             if (diff > 0)
             {
                 //Enemy push
-                CharacterManager.Instance.UpdateFriction(Mathf.Clamp(maxFriction - Mathf.Abs(diff), 0.06f, 0.25f));
+                CharacterManager.Instance.UpdateFriction(Mathf.Clamp(maxFriction - Mathf.Abs(diff), 0.12f, 0.25f));
                 EnemySpawner.Instance.UpdateFriction(0.3f);
             }
         }

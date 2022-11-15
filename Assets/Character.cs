@@ -52,11 +52,11 @@ public class Character : MonoBehaviour
             {
                 if (type == CharacterType.Player)
                 {
-                    GetComponent<Rigidbody>().AddForce(Vector3.forward * speed * Time.deltaTime, ForceMode.Force);
+                    GetComponent<Rigidbody>().AddForce(Vector3.forward * 500 * Time.deltaTime, ForceMode.Force);
                 }
                 else
                 {
-                    GetComponent<Rigidbody>().AddForce(-Vector3.forward * speed * Time.deltaTime, ForceMode.Force);
+                    GetComponent<Rigidbody>().AddForce(-Vector3.forward * 500 * Time.deltaTime, ForceMode.Force);
                 }
             }
         }
