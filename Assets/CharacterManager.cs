@@ -42,7 +42,7 @@ public class CharacterManager : MonoBehaviour
 
     #region Upgrades
 
-    public void UpgradeStrength()
+    public void UpgradeStrength(int val)
     {
         foreach(Character c in characters)
         {
@@ -50,29 +50,87 @@ public class CharacterManager : MonoBehaviour
         }
     }
 
+    public void UpdateFriction(float v)
+    {
+        foreach (Character c in characters)
+        {
+            c.GetComponent<CapsuleCollider>().material.dynamicFriction = v;
+            c.GetComponent<CapsuleCollider>().material.staticFriction = v;
+
+        }
+    }
     public void SpawnCharacter()
     {
-        GameObject g = Instantiate(character, spawnPoints[Random.Range(0, spawnPoints.Count)].position, Quaternion.identity);
+        GameObject g = Instantiate(character, spawnPoints[GetNumberFromRange(spawnPoints.Count - 1, characters.Count)].position, Quaternion.identity);
         AddCharacter(g.GetComponent<Character>());
+        print(UpgradeManager.Instance.GetUpgradeValue(UpgradeType.Strength));
+        g.GetComponent<Character>().UpdateStrength (UpgradeManager.Instance.GetUpgradeValue(UpgradeType.Strength));
     }
 
+ 
     public void UpgradeIncome()
     {
         //For everycharacter that falls
     }
-
-    
-
     #endregion
+    public float CalculateTotalStrength()
+    {
+        float f = 0;
+        foreach(Character c in characters)
+        {
+            if(c.GetState()== CharacterState.Push)
+            {
+                f+=c.GetStrength();
+            }
+        }
+
+        if (f != 0)
+            return f;
+        else
+            return 0;
+    }
+
+   
+    public int GetNumberFromRange(int maxNumber, int testNumber)
+    {
+        if (testNumber > maxNumber)
+        {
+            int newId = testNumber % maxNumber;
+            if (newId == 0)
+            {
+                newId = maxNumber;
+            }
+            return newId;
+        }
+        else
+        {
+            return testNumber;
+        }
+    }
+
+
+  
 
     public void Victory()
     {
         foreach (Character c in characters)
         {
             c.UpdateState(CharacterState.Celebrate);
+            if(c.GetState() == CharacterState.Push)
+            c.GetComponent<Rigidbody>().isKinematic = true;
         }
     }
 
+
+    public void Defeat()
+    {
+        foreach (Character c in characters)
+        {
+            c.UpdateState(CharacterState.Defeat);
+            if (c.GetState() == CharacterState.Push)
+                c.GetComponent<Rigidbody>().isKinematic = true;
+        }
+    }
     public void AddCharacter(Character c)
     {
         characters.Add(c);

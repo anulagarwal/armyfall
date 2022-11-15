@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using TMPro;
 public class Character : MonoBehaviour
 {
     [Header("Attributes")]
@@ -12,6 +12,7 @@ public class Character : MonoBehaviour
     [SerializeField] Vector3 swimDirection;
     [SerializeField] float swimSpeed;
     [SerializeField] int deathCoins;
+    [SerializeField] TextMeshPro tm;
 
 
 
@@ -36,13 +37,27 @@ public class Character : MonoBehaviour
         if (canMove)
         {
             //transform.Translate(Vector3.forward * speed * Time.deltaTime);
-            if (type == CharacterType.Player)
+            if (state == CharacterState.Run)
             {
-                GetComponent<Rigidbody>().AddForce(Vector3.forward * speed * Time.deltaTime, ForceMode.Force);
+                if (type == CharacterType.Player)
+                {
+                    GetComponent<Rigidbody>().AddForce(Vector3.forward * 500 * Time.deltaTime, ForceMode.Force);
+                }
+                else
+                {
+                    GetComponent<Rigidbody>().AddForce(-Vector3.forward * 500 * Time.deltaTime, ForceMode.Force);
+                }
             }
             else
             {
-                GetComponent<Rigidbody>().AddForce(-Vector3.forward * speed * Time.deltaTime, ForceMode.Force);
+                if (type == CharacterType.Player)
+                {
+                    GetComponent<Rigidbody>().AddForce(Vector3.forward * speed * Time.deltaTime, ForceMode.Force);
+                }
+                else
+                {
+                    GetComponent<Rigidbody>().AddForce(-Vector3.forward * speed * Time.deltaTime, ForceMode.Force);
+                }
             }
         }
         if(state== CharacterState.Swim)
@@ -79,46 +94,64 @@ public class Character : MonoBehaviour
         speed += val;
         ps.Play();
     }
+    public void UpdateStrength(int val)
+    {
+        speed = val;
+    }
 
+    public void UpdateDeathCoin(int val)
+    {
+        deathCoins = val;
+       
+    }
     public CharacterState GetState()
     {
         return state;
     }
-
+    public float GetStrength()
+    {
+        return speed;
+    }
     public void UpdateState(CharacterState st)
     {
-        state = st;
-        switch (st)
+        if (state != CharacterState.Celebrate)
         {
-            case CharacterState.Run:
-                animator.Play("Run");
-                break;
+            state = st;
+            switch (st)
+            {
+                case CharacterState.Run:
+                    animator.Play("Run");
+                    break;
 
-            case CharacterState.Push:
-                animator.Play("Push");
+                case CharacterState.Push:
+                    animator.Play("Push");
 
-                break;
+                    break;
 
-            case CharacterState.Fall:
-                animator.Play("Fall");
-                if (type == CharacterType.Enemy)
-                {
-                    UIManager.Instance.SpawnPointText(transform.position);
-                    CoinManager.Instance.AddCoins(deathCoins);
-                }
-                break;
+                case CharacterState.Fall:
+                    animator.Play("Fall");
+                    if (type == CharacterType.Enemy)
+                    {
+                        UIManager.Instance.SpawnAwesomeText(transform.position, "+"+deathCoins);
+                        CoinManager.Instance.AddCoins(deathCoins);
+                    }
+                    break;
 
-            case CharacterState.Celebrate:
-                animator.Play("Victory");
-                canMove = false;
+                case CharacterState.Celebrate:
+                    animator.Play("Victory");
+                    canMove = false;
+                    break;
+                case CharacterState.Defeat:
+                    //animator.Play("Defeat");
+                    canMove = false;
+                    break;
 
-                break;
+                case CharacterState.Swim:
+                    canMove = false;
 
-            case CharacterState.Swim:
-                canMove = false;
-                
-                Destroy(gameObject, 5f);
-                break;
+                    Destroy(gameObject, 5f);
+                    break;
+            }
         }
     }
 

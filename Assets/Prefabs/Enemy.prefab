@@ -114,6 +114,7 @@ MonoBehaviour:
   swimDirection: {x: -0.01, y: 0, z: 0}
   swimSpeed: 0.005
   deathCoins: 100
+  tm: {fileID: 0}
   animator: {fileID: 3108320128464595141}
   ground: {fileID: 2989429009117731855}
   IgnoreMe:
@@ -155,7 +156,7 @@ CapsuleCollider:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8811412627340488066}
-  m_Material: {fileID: 13400000, guid: ed818e78616df441183d172da175fa8b, type: 2}
+  m_Material: {fileID: 13400000, guid: 4a8a0fa50708448f89db1dce7e804481, type: 2}
   m_IsTrigger: 0
   m_Enabled: 1
   m_Radius: 1.5684392

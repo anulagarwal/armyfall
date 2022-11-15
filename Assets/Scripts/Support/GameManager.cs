@@ -39,6 +39,10 @@ public class GameManager : MonoBehaviour
         currentLevel = PlayerPrefs.GetInt("level", 1);       
         UIManager.Instance.UpdateLevel(currentLevel);
         currentState = GameState.Main;
+        foreach (MonoBehaviour m in objectsToDisable)
+        {
+            m.enabled = false;
+        }
     }
 
     #endregion
@@ -46,10 +50,15 @@ public class GameManager : MonoBehaviour
     
     public void StartLevel()
     {
-        UIManager.Instance.SwitchUIPanel(UIPanelState.Gameplay);       
+        foreach (MonoBehaviour m in objectsToDisable)
+        {
+            m.enabled = true;
+        }
+            UIManager.Instance.SwitchUIPanel(UIPanelState.Gameplay);       
         currentState = GameState.InGame;
         Analytics.Instance.StartLevel(currentLevel);
         levelStartTime = Time.time;
+
     }
 
     public void AddMove(int v)

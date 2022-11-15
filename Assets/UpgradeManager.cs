@@ -13,6 +13,16 @@ public class UpgradeManager : MonoBehaviour
     [SerializeField] List<Cost> strengthUpgrade;
     [SerializeField] List<Cost> incomeUpgrade;
 
+    [SerializeField] int spawnBaseValue;
+    [SerializeField] int spawnUpgradeMultiply;
+
+    [SerializeField] int strBaseValue;
+    [SerializeField] int strUpgradeMultiply;
+
+
+    [SerializeField] int incBaseValue;
+    [SerializeField] int incUpgradeMultiply;
+
     [SerializeField] int curSpawnLevel;
     [SerializeField] int curStrengthLevel;
     [SerializeField] int curIncomeLevel;
@@ -40,6 +50,15 @@ public class UpgradeManager : MonoBehaviour
         curStrengthLevel = PlayerPrefs.GetInt("strength", 1);
         curIncomeLevel = PlayerPrefs.GetInt("income", 1);
         CheckAvailableUpgrades();
+        strBaseValue = strengthUpgrade[0].value;
+        strUpgradeMultiply = strengthUpgrade[1].value - strBaseValue;
+
+        incBaseValue = incomeUpgrade[0].value;
+        incUpgradeMultiply = incomeUpgrade[1].value - incBaseValue;
+
+        spawnBaseValue = spawnUpgrade[0].cost;
+        spawnUpgradeMultiply = spawnUpgrade[1].value - spawnBaseValue;
+
         UIManager.Instance.UpdateIncome(curIncomeLevel + "", GetUpgradeCost(UpgradeType.Income) + "");
         UIManager.Instance.UpdateStr(curStrengthLevel + "", GetUpgradeCost(UpgradeType.Strength) + "");
         UIManager.Instance.UpdateSpawn(curSpawnLevel + "", GetUpgradeCost(UpgradeType.Spawn) + "");
@@ -54,7 +73,8 @@ public class UpgradeManager : MonoBehaviour
 
     public void UpgradeStrength()
     {
-        CharacterManager.Instance.UpgradeStrength();
+        CharacterManager.Instance.UpgradeStrength(GetUpgradeValue(UpgradeType.Strength));
+        print(GetUpgradeValue(UpgradeType.Strength));
         curStrengthLevel++;
         cm.SubtractCoins(GetUpgradeCost(UpgradeType.Strength)-100);
 
@@ -67,9 +87,9 @@ public class UpgradeManager : MonoBehaviour
 
     public void UpgradeIncome()
     {
+        EnemySpawner.Instance.UpdateIncome(GetUpgradeCost(UpgradeType.Income));
         curIncomeLevel++;
         cm.SubtractCoins(GetUpgradeCost(UpgradeType.Income)-100);
-
         UIManager.Instance.UpdateIncome(curIncomeLevel+"", GetUpgradeCost(UpgradeType.Income)+"");
         PlayerPrefs.SetInt("income", curIncomeLevel);
 
@@ -135,6 +155,28 @@ public class UpgradeManager : MonoBehaviour
             case UpgradeType.Strength:
                 // return strengthUpgrade[curStrengthLevel-1].cost;
                 return curStrengthLevel * upgradeAmount;
+        }
+        return 0;
+    }
+
+    public int GetUpgradeValue(UpgradeType t)
+    {
+        switch (t)
+        {
+            case UpgradeType.Income:
+                //return incomeUpgrade[curIncomeLevel-1].cost;
+                return incBaseValue + (incUpgradeMultiply * (curIncomeLevel-1)) ;
+
+
+            case UpgradeType.Spawn:
+                // return spawnUpgrade[curSpawnLevel-1].cost;
+                return spawnBaseValue + (spawnUpgradeMultiply * (curSpawnLevel - 1));
+
+
+            case UpgradeType.Strength:
+                // return strengthUpgrade[curStrengthLevel-1].cost;
+                return strBaseValue + (strUpgradeMultiply * (curStrengthLevel - 1));
+
         }
         return 0;
     }

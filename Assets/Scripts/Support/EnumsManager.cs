@@ -58,6 +58,7 @@ public enum CharacterState
     Push,
     Fall,
     Celebrate,
+    Defeat,
     Swim
 }
 
