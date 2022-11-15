@@ -26,6 +26,20 @@ public class UIManager : MonoBehaviour
     [SerializeField] private Text loseLevelText = null;
     [SerializeField] private Text debugText = null;
 
+    [Header("Upgrade Buttons")]
+    [SerializeField] private GameObject spawnUpgrade;
+    [SerializeField] private Text spawnLevel;
+    [SerializeField] private Text spawnCost;
+
+    [SerializeField] private GameObject strUpgrade;
+    [SerializeField] private Text strLevel;
+    [SerializeField] private Text strCost;
+
+    [SerializeField] private GameObject incomeUpgrade;
+    [SerializeField] private Text incomeLevel;
+    [SerializeField] private Text incomeCost;
+
+
 
     [Header("Reward/Coins")]
     [SerializeField] List<Text> allCurrentCoins = null;
@@ -114,6 +128,39 @@ public class UIManager : MonoBehaviour
 
     }
 
+    public void SpawnActive(bool active)
+    {
+        spawnUpgrade.GetComponent<Button>().interactable = active;
+    }
+
+    public void StrActive(bool active)
+    {
+        strUpgrade.GetComponent<Button>().interactable = active;
+    }
+    public void IncomeActive(bool active)
+    {
+        incomeUpgrade.GetComponent<Button>().interactable = active;
+    }
+
+    public void UpdateSpawn(string level, string cost)
+    {
+        spawnCost.text = cost;
+        spawnLevel.text = "LEVEL " + level;
+    }
+
+    public void UpdateIncome(string level, string cost)
+    {
+        incomeCost.text = cost;
+        incomeLevel.text = "LEVEL " + level;
+    }
+
+    public void UpdateStr(string level, string cost)
+    {
+        strCost.text = cost;
+        strLevel.text = "LEVEL " + level;
+    }
+
+
     public void UpdateCurrentCoins(int v)
     {
         foreach(Text t in allCurrentCoins)
@@ -146,17 +193,18 @@ public class UIManager : MonoBehaviour
 
     public void OnClickSpawnButton()
     {
-        CharacterManager.Instance.SpawnCharacter();
+        UpgradeManager.Instance.UpgradeSpawn();
     }
 
     public void OnClickIncomeButton()
     {
-
+        UpgradeManager.Instance.UpgradeIncome();
     }
 
     public void OnClickStrengthButton()
     {
-        CharacterManager.Instance.UpgradeStrength();
+        UpgradeManager.Instance.UpgradeStrength();
+
     }
     #endregion
 

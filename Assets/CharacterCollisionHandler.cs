@@ -15,11 +15,15 @@ public class CharacterCollisionHandler : MonoBehaviour
         {
             if(collision.gameObject.GetComponent<Character>().GetState() == CharacterState.Push)
             {
-                print("char");
 
                 GetComponent<Character>().UpdateState(CharacterState.Push);
 
             }
+        }
+
+        if (collision.gameObject.tag == "Water")
+        {
+            GetComponent<Character>().UpdateState(CharacterState.Swim);
         }
     }
 }

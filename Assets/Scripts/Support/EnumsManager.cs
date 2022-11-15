@@ -57,7 +57,15 @@ public enum CharacterState
     Run,
     Push,
     Fall,
-    Celebrate
+    Celebrate,
+    Swim
+}
+
+public enum UpgradeType
+{
+    Strength,
+    Spawn,
+    Income
 }
 
 public enum CharacterType

@@ -61,7 +61,9 @@ public class GameManager : MonoBehaviour
     {
         if (currentState == GameState.InGame)
         {
-            //confetti.SetActive(true);
+            CharacterManager.Instance.Victory();
+            EnemySpawner.Instance.Defeat();
+            confetti.SetActive(true);
             Invoke("ShowWinUI", 1.4f);
           
             currentState = GameState.Win;

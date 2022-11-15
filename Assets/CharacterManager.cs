@@ -61,7 +61,17 @@ public class CharacterManager : MonoBehaviour
         //For everycharacter that falls
     }
 
+    
+
     #endregion
+
+    public void Victory()
+    {
+        foreach (Character c in characters)
+        {
+            c.UpdateState(CharacterState.Celebrate);
+        }
+    }
 
     public void AddCharacter(Character c)
     {

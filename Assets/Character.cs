@@ -9,11 +9,18 @@ public class Character : MonoBehaviour
     [SerializeField] CharacterState state = CharacterState.Run;
     [SerializeField] CharacterType type = CharacterType.Player;
     [SerializeField] bool canMove;
+    [SerializeField] Vector3 swimDirection;
+    [SerializeField] float swimSpeed;
+    [SerializeField] int deathCoins;
+
+
 
     [Header("Component References")]
     [SerializeField] Animator animator;
     [SerializeField] Transform ground;
     [SerializeField] public LayerMask IgnoreMe;
+    [SerializeField] public ParticleSystem ps;
+
 
 
     // Start is called before the first frame update
@@ -21,6 +28,7 @@ public class Character : MonoBehaviour
     {
         UpdateState(state);
     }
+    
 
     // Update is called once per frame
     void Update()
@@ -37,19 +45,39 @@ public class Character : MonoBehaviour
                 GetComponent<Rigidbody>().AddForce(-Vector3.forward * speed * Time.deltaTime, ForceMode.Force);
             }
         }
+        if(state== CharacterState.Swim)
+        {
+            //move right
+            transform.Translate(swimDirection * speed * Time.deltaTime);
+        }
           
        
+    }
+    private void OnDestroy()
+    {
+        if(type  == CharacterType.Player)
+        CharacterManager.Instance.RemoveCharacter(this);
+
+        else
+        {
+            EnemySpawner.Instance.RemoveEnemy(this);
+        }
     }
 
     public void Fall()
     {
-        canMove = false;
+        if (state != CharacterState.Celebrate)
+        {
+            canMove = false;
+            UpdateState(CharacterState.Fall);
+        }
         //Enable Ragdoll
     }
 
     public void UpgradeStrength(int val)
     {
         speed += val;
+        ps.Play();
     }
 
     public CharacterState GetState()
@@ -73,12 +101,23 @@ public class Character : MonoBehaviour
 
             case CharacterState.Fall:
                 animator.Play("Fall");
-
+                if (type == CharacterType.Enemy)
+                {
+                    UIManager.Instance.SpawnPointText(transform.position);
+                    CoinManager.Instance.AddCoins(deathCoins);
+                }
                 break;
 
             case CharacterState.Celebrate:
-                animator.Play("Celebrate");
+                animator.Play("Victory");
+                canMove = false;
 
+                break;
+
+            case CharacterState.Swim:
+                canMove = false;
+                
+                Destroy(gameObject, 5f);
                 break;
         }
     }
