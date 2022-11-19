@@ -13,11 +13,9 @@ public class CharacterCollisionHandler : MonoBehaviour
 
         if (collision.gameObject.tag == "Character")
         {
-            if(collision.gameObject.GetComponent<Character>().GetState() == CharacterState.Push)
+            if(collision.gameObject.GetComponent<Character>().GetState() == CharacterState.Push && GetComponent<Character>().GetState() != CharacterState.Fall)
             {
-
                 GetComponent<Character>().UpdateState(CharacterState.Push);
-
             }
         }
 
